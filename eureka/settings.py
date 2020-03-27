@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'eureka.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'eurekaDB',
+        'NAME': 'eurekaDatabase',
    },
    'CLIENT': {
         'host': 'localhost',

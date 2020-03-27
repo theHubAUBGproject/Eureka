@@ -1,14 +1,7 @@
 from djongo import models
-
 from jsonfield import JSONField
 # Create your models here.
 
-
-class Feature(models.Model):
-    featureName = models.CharField(max_length=20)
-    currDimension = models.CharField(max_length=20, default=None)
-    def __str__(self):
-        return self.featureName
 
 class Language(models.Model):
     name = models.CharField(max_length=15)
@@ -17,12 +10,19 @@ class Language(models.Model):
 
 class Dimension(models.Model):
     dimensionName = models.CharField(max_length=20)
-    features = models.ArrayReferenceField(
-        to = Feature,
+    
+    def __str__(self):
+        return self.dimensionName
+
+
+class Feature(models.Model):
+    featureName = models.CharField(max_length=20)
+    dimension = models.ArrayReferenceField(
+        to = Dimension,
         default=None,
     )
     def __str__(self):
-        return self.dimensionName
+        return self.featureName
 
 class Word(models.Model):
     wordContent = models.CharField(max_length=50)
