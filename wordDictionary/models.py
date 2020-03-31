@@ -18,6 +18,7 @@ class FamilyForm(forms.ModelForm):
 
 class Language(models.Model):
     name = models.CharField(max_length=15)
+    
     family = models.EmbeddedField(
         model_container = Family,
         model_form_class = FamilyForm,
@@ -72,7 +73,7 @@ class LemmaForm(forms.ModelForm):
         model = Lemma
         fields = ['name']
 
-#------------------------
+#++++++++++++++++++++++++
 
 class Word(models.Model):
     name = models.CharField(max_length=50)
