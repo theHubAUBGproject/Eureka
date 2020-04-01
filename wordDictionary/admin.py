@@ -1,5 +1,5 @@
 from django.contrib import admin
-from wordDictionary.models import  Word, Feature, Dimension, Language, Lemma, Family
+from wordDictionary.models import  Word, Feature, Dimension, Language, Lemma, Family, TagSet, POS
 
 
 
@@ -10,3 +10,5 @@ admin.site.register(Dimension)
 admin.site.register(Language)
 admin.site.register(Lemma)
 admin.site.register(Family)
+admin.site.register(TagSet)
+admin.site.register(POS)

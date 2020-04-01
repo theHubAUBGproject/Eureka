@@ -1,7 +1,14 @@
 from djongo import models
 from django import forms
 from jsonfield import JSONField
+from django.contrib.auth.models import User
+from django.utils import timezone
 # Create your models here.
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name','email']
 
 #++++++++++++++++++++++++++
 
@@ -53,8 +60,28 @@ class Feature(models.Model):
         model_form_class = DimensionForm,
         default=None,
     )
+
     def __str__(self):
         return self.name
+
+class FeatureForm(forms.ModelForm):
+    class Meta:
+        model = Feature
+        fields = ['name']
+
+#++++++++++++++++++++++++
+
+class POS(models.Model):
+    name = models.CharField(max_length=20)
+    def __str__(self):
+        return self.name
+
+class POSForm(forms.ModelForm):
+    class Meta:
+        model = POS
+        fields = ['name']
+
+
 
 #++++++++++++++++++++++++
 
@@ -63,8 +90,23 @@ class Lemma(models.Model):
     language = models.EmbeddedField(
         model_container = Language,
         model_form_class = LanguageForm,
-        default=None,
+        blank=True,
+        default = None,
     )
+    
+    author = models.EmbeddedField(
+        model_container = User,
+        model_form_class = UserForm,
+        blank = True,
+        default = None,
+    )
+    pos = models.EmbeddedField(
+        model_container = POS,
+        model_form_class = POSForm,
+        blank=True,
+        default = None,
+    )
+    date_updated = models.DateTimeField(default=timezone.now)
     def __str__(self):
         return self.name
 
@@ -75,9 +117,31 @@ class LemmaForm(forms.ModelForm):
 
 #++++++++++++++++++++++++
 
+
+class TagSet(models.Model):
+    name = models.CharField(max_length=50,blank=True, default="")
+    features = models.ArrayReferenceField(
+        to = Feature,
+        default=None
+    )
+    def __str__(self):
+        return self.name
+
+class TagSetForm(forms.ModelForm):
+    class Meta:
+        model = TagSet
+        fields = ['name','features']
+
+#++++++++++++++++++++++++
 class Word(models.Model):
     name = models.CharField(max_length=50)
-
+    date_updated = models.DateTimeField(default=timezone.now)
+    author = models.EmbeddedField(
+        model_container = User,
+        model_form_class = UserForm,
+        blank = True,
+        default = None,
+    )
     lemma = models.EmbeddedField(
         model_container = Lemma,
         model_form_class = LemmaForm,
@@ -89,6 +153,10 @@ class Word(models.Model):
         model_form_class = LanguageForm,
         default=None,
     )
-    dimensions = JSONField()
+    tagset = models.EmbeddedField(
+        model_container  = TagSet,
+        model_form_class = TagSetForm,
+        default=None,
+    )
     def __str__(self):
         return self.name
