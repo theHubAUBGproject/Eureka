@@ -36,10 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wordDictionary',
-<<<<<<< HEAD
-=======
-    'rest_framework'
->>>>>>> upstream/master
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
