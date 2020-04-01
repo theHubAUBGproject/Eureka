@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'wordDictionary',
     'rest_framework',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -76,11 +77,7 @@ WSGI_APPLICATION = 'eureka.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-<<<<<<< HEAD
         'NAME': 'eurekaDatabase',
-=======
-        'NAME': 'test',
->>>>>>> upstream/master
    },
    'CLIENT': {
         'host': 'localhost',
