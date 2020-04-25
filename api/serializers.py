@@ -1,4 +1,4 @@
-from wordDictionary.models import Feature, Language, Dimension, Word
+from wordDictionary.models import Feature, Language, Dimension, Word, TagSet, Genus, Family
 from rest_framework import serializers
 
 class FeatureSerializer(serializers.ModelSerializer):
