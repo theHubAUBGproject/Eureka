@@ -20,11 +20,11 @@ def getDimOptions(tagset):
         feat_names.append(i['name'])
         tag_names.add(i['dimension']['name'])
     for i in tag_names:
-        result[i] = []
+        result[i] = set([])
     for f in feat.data:
         for d in dim.data:
             if(f['dimension']['id'] == d['id'] and d['name'] in tag_names):
                 if(f['name'] in feat_names):
-                    result[d['name']].append([f['name'], True])
-                result[d['name']].append([f['name'], False])
+                    result[d['name']].add((f['name'], True))
+                result[d['name']].add((f['name'], False))
     return result
