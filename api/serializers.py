@@ -47,6 +47,7 @@ class LemmaDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Lemma
+        lookup_field = 'name'
         fields = '__all__'
 
 
@@ -83,3 +84,9 @@ class WordDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Word
         fields = '__all__'
+
+
+class RelatedWordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Word
+        fields = ['id', 'name']
