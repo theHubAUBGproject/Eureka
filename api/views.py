@@ -10,7 +10,7 @@ from .serializers import (FeatureListSerializer, FeatureDetailSerializer,
                           WordListSerializer, TagSetSerializer,
                           LemmaListSerializer, LemmaDetailSerializer,
                           FamilySerializer, GenusSerializer,
-                          WordDetailSerializer)
+                          WordDetailSerializer, RelatedWordSerializer)
 from .utils import getDimOptions
 
 
@@ -125,22 +125,22 @@ class WordList(APIView):
 
 
 class WordDetail(APIView):
-    def get_word(self, pk):
+    def get_word(self, name):
         try:
-            return Word.objects.get(pk=pk)
+            return Word.objects.filter(name=name)[:1]
         except Word.DoesNotExist:
             return Http404
 
-    def get(self, request, pk):
-        word = self.get_word(pk)
-        serializer = WordDetailSerializer(word)
+    def get(self, request, slug):
+        word = self.get_word(slug)
+        serializer = WordDetailSerializer(word[0])
         options = getDimOptions(serializer.data['tagset'])
         serializer_data = serializer.data
         serializer_data['dimensions'] = options
         return Response(serializer_data,
                         headers={"Access-Control-Allow-Origin": "*"})
 
-    def options(self, request, pk):
+    def options(self, request, slug):
         return Response(status=status.HTTP_200_OK,
                         headers={"Access-Control-Allow-Origin": "*",
                                  "Access-Control-Allow-Headers":
@@ -162,16 +162,34 @@ class LemmaList(APIView):
 
 
 class LemmaDetail(APIView):
-    def get_lemma(self, pk):
+    def get_lemma(self, name):
         try:
-            return Lemma.objects.get(pk=pk)
+            return Lemma.objects.get(name=name)
         except Lemma.DoesNotExist:
             return Http404
 
-    def get(self, request, pk):
-        lemma = self.get_lemma(pk)
+    def get_related_words(self, pk):
+        try:
+            related_words = Word.objects.filter(lemma=pk)
+            return related_words
+        except Word.DoesNotExist:
+            return Http404
+
+    def get(self, request, slug):
+        lemma = self.get_lemma(name=slug)
         serializer = LemmaDetailSerializer(lemma)
-        return Response(serializer.data)
+        related_words = self.get_related_words(lemma.id)
+        words = RelatedWordSerializer(related_words, many=True)
+        lemma_data = serializer.data
+        lemma_data['related_words'] = words.data
+        return Response(lemma_data,
+                        headers={"Access-Control-Allow-Origin": "*"})
+  
+    def options(self, request, slug):
+        return Response(status=status.HTTP_200_OK,
+                        headers={"Access-Control-Allow-Origin": "*",
+                                 "Access-Control-Allow-Headers":
+                                 "access-control-allow-origin"})
 
 
 class GenusList(APIView):
