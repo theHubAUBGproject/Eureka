@@ -79,14 +79,14 @@ WSGI_APPLICATION = 'eureka.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'testdb',
-        'USER': 'testdb',
-        'PASSWORD': 'testdb',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'unimorph',
+        'USER': 'postgres',
+        'PASSWORD': 'Lazajola12',
+        "HOST": 'localhost',
     }
 }
+
 
 
 # Password validation

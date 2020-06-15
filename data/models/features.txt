@@ -1,0 +1,284 @@
+Aktionsart;Accomplishment;ACCMP
+Aktionsart;Achievement;Ach
+Aktionsart;Activity;ACTY
+Aktionsart;Atelic;ATEL
+Aktionsart;Durative;DUR
+Aktionsart;Dynamic;DYN
+Aktionsart;Punctual;PCT
+Aktionsart;Semelfactive;SEMEL
+Aktionsart;Stative;STAT
+Aktionsart;Telic;TEL
+Animacy;Animate;ANIM
+Animacy;Human;HUM
+Animacy;Inanimate;INAN
+Animacy;Non-human;NHUM
+Argument;Marking 3.sg Object (from feature template);ARGAC3S
+Aspect;Habitual;HAB
+Aspect;Imperfective;IPFV
+Aspect;Iterative;ITER
+Aspect;Perfective;PFV
+Aspect;Perfect;PRF
+Aspect;Progressive;PRog
+Aspect;Prospective;PROSP
+Case;Ablative;ABL
+Case;Absolutive;ABS
+Case;Accusative;ACC
+Case;Allative;ALL
+Case;Near, in front of;ANTE
+Case;Approximative;APPRX
+Case;Next to;APUD
+Case;At;AT
+Case;Aversive;AVR
+Case;Benefactive;BEN
+Case;Essive-modal;BYWAY
+Case;Near;CIRC
+Case;Comitative;COM
+Case;Comparative;COMPV
+Case;Dative;DAT
+Case;Equative;EQTV
+Case;Ergative;ERG
+Case;Essive;ESS
+Case;Formal;FRML
+Aktionsart;Accomplishment;ACCMP
+Aktionsart;Achievement;ACH
+Aktionsart;Activity;ACTY
+Aktionsart;Atelic;ATEL
+Aktionsart;Durative;DUR
+Aktionsart;Dynamic;DYN
+Aktionsart;Punctual;PCT
+Aktionsart;Semelfactive;SEMEL
+Aktionsart;Stative;STAT
+Aktionsart;Telic;TEL
+Animacy;Animate;ANIM
+Animacy;Human;HUM
+Animacy;Inanimate;INAN
+Animacy;Non-human;NHUM
+Argument;Marking    3.sg Object (from feature template);ARGAC3S
+Aspect;Habitual;HAB
+Aspect;Imperfective;IPFV
+Aspect;Iterative;ITER
+Aspect;Perfective;PFV
+Aspect;Perfect;PRF
+Aspect;Progressive;PRog
+Aspect;Prospective;PROSP
+Case;Ablative;ABL
+Case;Absolutive;ABS
+Case;Accusative;ACC
+Case;Allative;ALL
+Case;Near,in front of;ANTE
+Case;Approximative;APPRX
+Case;Next to;APUD
+Case;At;AT
+Case;Aversive;AVR
+Case;Benefactive;BEN
+Case;Essive-modal;BYWAy
+Case;Near;circ
+Case;Comitative;COM
+Case;Comparative;COMPV
+Case;Dative;DAT
+Case;Equative;EQTV
+Case;Ergative;ERG
+Case;Essive;ESS
+Case;Formal;FRML
+Case;Genitive;GEN
+Case;In;IN
+Case;Instrumental;INS
+Case;Among;INTER
+Case;Nominative;NOM
+Case;Nominative, S-only;NOMS
+Case;On;ON
+Case;On (horizontal);ONHR
+Case;On (vertical);ONVR
+Case;Behind;POST
+Case;Privative;PRIV
+Case;Prolative/translative;PROL
+Case;Proprietive;PROPR
+Case;Proximate;PROX
+Case;Purposive;PRP
+Case;Partitive;PRT
+Case;Relative;REL
+Case;Distal;REM
+Case;Under;SUB
+Case;Terminative;TERM
+Case;Translative;TRANS
+Case;Versative;VERS
+Case;Vocative;VOC
+Comparison;Absolute;AB
+Comparison;Comparative;CMPR
+Comparison;Equative;EQT
+Comparison;Relative;RL
+Comparison;Superlative;SPRL
+Definiteness;Definite;DEF
+Definiteness;Indefinite;INDF
+Definiteness;Non-Specific;NSPEC
+Definiteness;Specific;SPEC
+Deixis;Above;ABV
+Deixis;Below;BEL
+Deixis;Even;EVEN
+Deixis;Medial;MED
+Deixis;No Reference Point, Distal;NOREF
+Deixis;Invisible;NVIS
+Deixis;Phoric, situated in discourse;PHOR
+Deixis;Proximate;PROX
+Deixis;First Person Reference Point;REF1
+Deixis;Second Person Reference Point;REF2
+Deixis;Remote;REMT
+Deixis;Visible;VIS
+Evidentiality;Assumed;ASSUM
+Evidentiality;Auditory;AUD
+Evidentiality;Direct;DRCT
+Evidentiality;Firsthand;FH
+Evidentiality;Hearsay;HRSY
+Evidentiality;Inferred;INFER
+Evidentiality;Non-firsthand;NFH
+Evidentiality;Non-visual sensory;NVSEN
+Evidentiality;Quotative;QUOT
+Evidentiality;Reported;RPRT
+Evidentiality;Sensory;SEN
+Finiteness;Finite;FIN
+Finiteness;Nonfinite;NFIN
+Gender;Bantu Noun Classes;BANTU1-23
+Gender;Feminine;FEM
+Gender;Masculine;MASC
+Gender;Nakh-Daghestanian Noun Classes;NAKH1-8
+Gender;Neuter;NEUT
+Interrogativity;Declarative;DECL
+Interrogativity;Interrogative;INT
+Mood;Admirative;ADM
+Mood;Australian Non-Purposive;AUNPRP
+Mood;Australian Purposive;AUPRP
+Mood;Conditional;COND
+Mood;Debitive;DEB
+Mood;Deductive;DED
+Mood;Imperative-Jussive;IMP
+Mood;Indicative;IND
+Mood;Intentive;INTEN
+Mood;Irrealis;IRR
+Mood;Likely;LKLY
+Mood;Obligative;OBLIG
+Mood;Optative-Desiderative;OPT
+Mood;Permissive;PERM
+Mood;Potential;POT
+Mood;General Purposive;PURP
+Mood;Realis;REAL
+Mood;Subjunctive;SBJV
+Mood;Simulative;SIM
+Number;Dual;DU
+Number;Greater paucal;GPAUC
+Number;Greater plural;GRPL
+Number;Inverse;INVN
+Number;Paucal;PAUC
+Number;Plural;PL
+Number;Singular;SG
+Number;Trial;TRI
+Part of Speech;Adjective;ADJ
+Part of Speech;Adposition;ADP
+Part of Speech;Adverb;ADV
+Part of Speech;Article;ART
+Part of Speech;Auxiliary;AUX
+Part of Speech;Classifier;CLF
+Part of Speech;Complementizer;COMP
+Part of Speech;Conjunction;CONJ
+Part of Speech;Determiner;DET
+Part of Speech;Interjection;NTJ
+Part of Speech;Noun;N
+Part of Speech;Numeral;NUM
+Part of Speech;Particle;PART
+Part of Speech;Pronoun;PRO
+Part of Speech;Proper Name;PROPN
+Part of Speech;Verb;V
+Part of Speech;Converb;V.CVB
+Part of Speech;Masdar;V.MSDR
+Part of Speech;Participle;V.PTCP
+Person;Zero person;0
+Person;First person;1
+Person;Second person;2
+Person;Third person;3
+Person;Fourth person;4
+Person;Exclusive;EXCL
+Person;Inclusive;INCL
+Person;Obviative;OBV
+Person;Proximate;PRX
+Polarity;Positive;POS
+Polarity;Negative;NEG
+Politeness;Avoidance style;AVOID
+Politeness;Colloquial;COL
+Politeness;Formal, Referent Elevating;ELEV
+Politeness;Formal register;FOREG
+Politeness;Formal;FORM
+Politeness;High status;HIGH
+Politeness;Formal, Speaker Humbling;HUMB
+Politeness;Informal;INFM
+Politeness;Literary;LIT
+Politeness;Low status;LOW
+Politeness;Polite;POL
+Politeness;High status, elevated;STELEV
+Politeness;High status, supreme;STSUPR
+Possession;Alienable possession;ALN
+Possession;Inalienable possession;NALN
+Possession;Possession by 1.DU;PSS1D
+Possession;Possession by 1.DU.EXcl;PSS1DE
+Possession;Possession by 1.DU.INCL;PSS1DI
+Possession;Possession by 1.PL;PSS1P
+Possession;Possession by 1.PL.EXcl;PSS1PE
+Possession;Possession by 1.PL.INCL;PSS1PI
+Possession;Possession by 1.sg;PSS1S
+Possession;Possession by 2.DU;PSS2D
+Possession;Possession by 2.DU.FEM;PSS2DF
+Possession;Possession by 2.DU.MASC;PSS2DM
+Possession;Possession by 2.PL;PSS2P
+Possession;Possession by 2.PL.FEM;PSS2PF
+Possession;Possession by 2.PL.MASC;PSS2PM
+Possession;Possession by 2.sg;PSS2S
+Possession;Possession by 2.SG.FEM;PSS2SF
+Possession;Possession by 2.sg.fORM;PSS2SFORM
+Possession;Possession by 2.SG.INFM;PSS2SINFM
+Possession;Possession by 2.SG.MASC;PSS2SM
+Possession;Possession by 3.DU;PSS3D
+Possession;Possession by 3.DU.FEM;PSS3DF
+Possession; Possession by 3.DU.MASC;PSS3DM
+Possession;Possession by 3.PL;PSS3P
+Possession;Possession by 3.PL.FEM;PSS3PF
+Possession;Possession by 3.PL.MASC;PSS3PM
+Possession;Possession by 3.sg;PSS3S
+Possession;Possession by 3.SG.FEM;PSS3SF
+Possession;Possession by 3.SG.MASC;PSS3SM
+Possession;Possessed;PSSD
+Switch-Reference;SR among NPs in any argument position;CN_R_MN
+Switch-Reference;DS;DS
+Switch-Reference;DS Adverbial;DSADv
+Switch-Reference;Logophoric;LOG
+Switch-Reference;Open Reference;OR
+Switch-Reference;Sequential Multiclausal Aspect;SEQMA
+Switch-Reference;Simultaneous Multiclausal Aspect;SIMMA
+Switch-Reference;SS;ss
+Switch-Reference;SS Adverbial;SSADV
+Tense;Within 1 day;1DAY
+Tense;Future;FUT
+Tense;Hodiernal;HOD
+Tense;Immediate;IMMED
+Tense;Present;PRS
+Tense;Past;PST
+Tense;Recent;rCT
+Tense;Remote;RMT
+Valency;Applicative;APPL
+Valency;Causative;CAus
+Valency;Ditransitive;DITR
+Valency;Impersonal;IMPRS
+Valency;Intransitive;INTR
+Valency;Reciprocal;RECP
+Valency;Reflexive;REFL
+Valency;Transitive;TR
+Voice;Accompanier Focus;Acfoc
+Voice;Active;ACT
+Voice;Agent Focus;Agfoc
+Voice;Antipassive;ANTIP
+Voice;Beneficiary Focus;BFoc
+Voice;Conveyed Focus;Cfoc
+Voice;Direct;DIR
+Voice;Instrument Focus;Ifoc
+Voice;Inverse;INV
+Voice;Location Focus;LFoc
+Voice;Middle;MID
+Voice;Passive;PASS
+Voice;Patient Focus;PFoc

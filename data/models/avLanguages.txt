@@ -1,0 +1,110 @@
+Adyghe
+Albanian
+Ancient Greek
+Arabic
+Armenian
+Asturian
+Azerbaijani
+Bashkir
+Basque
+Belarusian
+Bengali
+Breton
+Bulgarian
+Catalan
+Central Kurdish
+Classical Armenian
+Classical Syriac
+Cornish
+Crimean
+Czech
+Danish
+Dutch
+English
+Estonian
+Faroese
+Finnish
+French
+Friulian
+Galician
+Georgian
+German
+Gothic
+Greenlandic
+Haida
+Hebrew
+Hindi
+Hungarian
+Icelandic
+Ingrian
+Irish
+Italian
+Kabardian
+Kannada
+Karelian
+Kashubian
+Kazakh
+Khakas
+Khaling
+Ladin
+Latin
+Latvian
+Lithuanian
+Livonian
+Livvi
+Low German
+Lower Sorbian
+Ludian
+Macedonian
+Maltese
+Manx
+Mapudungun
+Middle French
+Middle High German
+Middle Low German
+Modern Greek
+Murrinhpatha
+Navajo
+Neapolitan
+Norman
+North Frisian
+Northern Kurdish
+Northern Sami
+Norwegian BokmĂĄl
+Norwegian Nynorsk
+Occitan
+Old Church Slavonic
+Old English
+Old French
+Old Irish
+Old Saxon
+Pashto
+Persian
+Polish
+Portuguese
+Quechua
+Romanian
+Russian
+Sanskrit
+Scottish Gaelic
+Serbo Croatian
+Slovenian
+Spanish
+Swahili
+Swedish
+Tajik
+Tatar
+Telugu
+Tibetan
+Turkish
+Turkmen
+Ukrainian
+Urdu
+Uzbek
+Venetian
+Veps (Vepsian)
+Votic
+Welsh
+West Frisian
+Yiddish
+Zulu

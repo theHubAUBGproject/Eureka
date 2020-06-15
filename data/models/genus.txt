@@ -1,0 +1,258 @@
+Afro-Asiatic
+Aikaná
+Ainu
+Alacalufan
+Algic
+Altaic
+Andoke
+Anêm
+Anson Bay
+Arauan
+Araucanian
+Arawakan
+Atakapa
+Austro-Asiatic
+Austronesian
+Awin-Pare
+Aymaran
+Baining-Taulil
+Bangime
+Barbacoan
+Basque
+Beothuk
+Berta
+Betoi
+Border
+Bororoan
+Bosavi
+Bulaka River
+Bunuban
+Burushaski
+Cacua-Nukak
+Caddoan
+Cahuapanan
+Camsá
+Candoshi
+Cariban
+Cayuvava
+Central Sudanic
+Chapacura-Wanham
+Chibchan
+Chimakuan
+Chimúan
+Chiquito
+Chitimacha
+Choco
+Cholon
+Chon
+Chukotko-Kamchatkan
+Chumash
+Coahuiltecan
+Cofán
+Comecrudan
+Cuitlatec
+Dagan
+Darwin Region
+Dogon
+Dravidian
+East Bird's Head
+East Bougainville
+Eastern Daly
+Eastern Sudanic
+East Geelvink Bay
+East Strickland
+Eleman
+Eskimo-Aleut
+Esselen
+Fur
+Gaagudju
+Gapun
+Garrwan
+Germanic
+Gogodala-Suki
+Great Andamanese
+Guahiban
+Guaicuruan
+Guató
+Gumuz
+Gunwinyguan
+Hadza
+Haida
+Harakmbet
+Hmong-Mien
+Hokan
+Huarpe
+Huavean
+Huitotoan
+Ijoid
+Indo-European
+Iranxe
+Iroquoian
+Itonama
+Iwaidjan
+Jabutí
+Japanese
+Jarrakan
+Jirajaran
+Jivaroan
+Kadu
+Kalapuyan
+Kapixana
+Karankawa
+Kariri
+Karkar-Yuri
+Karok
+Kartvelian
+Katukinan
+Kaure
+Kayagar
+Keresan
+Khoe-Kwadi
+Kiowa-Tanoan
+Kiwaian
+Kolopom
+Koman
+Kordofanian
+Korean
+Kuliak
+Kunama
+Kunza
+Kuot
+Kusunda
+Kutenai
+Kwaza
+Kwerba
+Kwomtari-Baibai
+Kxa
+Laal
+Lakes Plain
+Left May
+Leko
+Lower Sepik-Ramu
+Lule
+Maban
+Macro-Ge
+Máku
+Mande
+Mangarrayi-Maran
+Mangrida
+Marind
+Mascoian
+Matacoan
+Mayan
+Mirndi
+Misumalpan
+Mixe-Zoque
+Mombum
+Monumbo
+Moraori
+Morehead and Upper Maro Rivers
+Morwap
+Mosetenan
+Movima
+Mura
+Muskogean
+Nadahup
+Na-Dene
+Nahali
+Nakh-Daghestanian
+Nambikuaran
+Natchez
+Niger-Congo
+Nimboran
+Nivkh
+Northern Daly
+Northwest Caucasian
+Nyulnyulan
+Oksapmin
+Oregon Coast
+other
+Oto-Manguean
+Páezan
+Pama-Nyungan
+Panoan
+Peba-Yaguan
+Penutian
+Puinave
+Puquina
+Quechuan
+Saharan
+Sáliban
+Salinan
+Salishan
+Sandawe
+Senagi
+Sentani
+Sepik
+Shabo
+Shompen
+Sino-Tibetan
+Siouan
+Skou
+Solomons East Papuan
+Songhay
+South Andamanese
+Southern Daly
+Sulka
+Sulung
+Tacame
+Tacanan
+Tai-Kadai
+Takelma
+Tangkic
+Tarascan
+Tasmanian
+Taushiro
+Teberan-Pawaian
+Tequistlatecan
+Ticuna
+Timor-Alor-Pantar
+Timote-Cuica
+Timucua
+Tiwian
+Tol
+Tonkawa
+Tor-Orya
+Torricelli
+Totonacan
+Trans-New Guinea
+Trumai
+Tu
+Tucanoan
+Tunica
+Tupian
+Turama-Kikorian
+Piawi
+Uralic
+Urarina
+Uru-Chipaya
+Uto-Aztecan
+Wagiman
+Wakashan
+Waorani
+Wappo-Yukian
+Warao
+Washo
+West Bomberai
+West Bougainville
+Western Daly
+Western Fly
+West Papuan
+Worrorran
+Yale
+Yámana
+Yangmanic
+Yanomam
+Yareban
+Yaruro
+Yatê
+Yawa
+Yele
+Yeniseian
+Yuchi
+Yukaghir
+Yuracare
+Yurimangi
+Zamucoan
+Zaparoan
+Zuni

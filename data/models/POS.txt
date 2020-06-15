@@ -1,0 +1,19 @@
+Part of Speech;Adjective;ADJ
+Part of Speech;Adposition;ADP
+Part of Speech;Adverb;ADV
+Part of Speech;Article;ART
+Part of Speech;Auxiliary;AUX
+Part of Speech;Classifier;CLF
+Part of Speech;Complementizer;COMP
+Part of Speech;Conjunction;CONJ
+Part of Speech;Determiner;DET
+Part of Speech;Interjection;NTJ
+Part of Speech;Noun;N
+Part of Speech;Numeral;NUM
+Part of Speech;Particle;PART
+Part of Speech;Pronoun;PRO
+Part of Speech;Proper Name;PROPN
+Part of Speech;Verb;V
+Part of Speech;Converb;V.CVB
+Part of Speech;Masdar;V.MSDR
+Part of Speech;Participle;V.PTCP

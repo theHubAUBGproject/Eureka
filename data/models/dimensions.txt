@@ -1,0 +1,27 @@
+Part of Speech
+Aktionsart
+Animacy
+Argument
+Marking
+Aspect
+Case
+Comparison
+Definiteness
+Deixis
+Evidentiality
+Finiteness
+Gender
+Information
+Structure
+Interrogativity
+Mood
+Number
+New
+Person
+Polarity
+Politeness
+Possession
+Switch-Reference
+Tense
+Valency
+Voice
