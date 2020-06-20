@@ -9,3 +9,4 @@ from .rootView import *
 from .tagsetViews import *
 from .wordViews import *
 from .userViews import *
+from .downloadViews import *
