@@ -43,15 +43,10 @@ class FeatureDownload(APIView):
         items = Feature.objects.all()
         response = HttpResponse(content_type='text/csv')
         response['content-disposition'] = 'attachment; filename="features.csv"'
-        writer = csv.writer(response)
-        writer.writerow(['name','dimension'])
-
-        allItems = []
-        alls = list(items)
-        for x in alls:
-            allItems.append([x.name,x.dimension.name])
-
-        writer.writerows(allItems)
+        writer = csv.writer(response, delimiter=';' )
+        writer.writerow(['name', 'dimension'])
+        for obj in items:
+            writer.writerow([obj.name, obj.dimension])
         return response
 
 
@@ -63,21 +58,20 @@ class LanguageDownload(APIView):
         response['content-disposition'] = 'attachment; filename="languages.csv"'
         writer = csv.writer(response, delimiter=';' )
         writer.writerow(['name','family','genus','walsCode'])
-
-        writer.writerows([obj.name,obj.family,obj.genus,obj.walsCode])
+        for obj in items:
+            writer.writerow([obj.name, obj.family, obj.genus, obj.walsCode])
         return response
 
 
 class WordDownload(APIView):
     """ Download a file with all the words of a language - api/download/word/language """
     def get(self, request, format=None,**kwargs):
-        lang = self.kwargs['lang']
-        lang = lang[0].upper() + lang[1:].lower()
-
-        langO = Language.objects.get(name=lang)
-        qs =  Word.objects.filter(language=langO.id).values(
+        languageName = self.kwargs['languageName']
+        languageName = "".join([languageName[0].upper(), languageName[1:].lower()])
+        languageObject = Language.objects.get(name=languageName)
+        querySet =  Word.objects.filter(language=languageObject.id).values(
             'name',
             lemma_name = F('lemma__name'),
             tagset_name = F('tagset__name'),
         )
-        return qs_to_csv_response(qs,langO)
+        return qs_to_csv_response(querySet,languageObject)
