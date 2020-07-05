@@ -10,12 +10,6 @@ class FeatureSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class LanguageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Language
-        fields = '__all__'
-
-
 class PosSerializer(serializers.ModelSerializer):
     class Meta:
         model = POS
@@ -33,6 +27,27 @@ class FeatureSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Feature
+        fields = '__all__'
+
+
+class GenusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genus
+        fields = '__all__'
+
+
+class FamilySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Family
+        fields = '__all__'
+
+
+class LanguageSerializer(serializers.ModelSerializer):
+    genus = GenusSerializer(read_only=True)
+    family = FamilySerializer(read_only=True)
+    
+    class Meta:
+        model = Language
         fields = '__all__'
 
 
@@ -54,25 +69,12 @@ class TagSetSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class FamilySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Family
-        fields = '__all__'
-
-
-
 class WordSerializer(serializers.ModelSerializer):
     lemma = LemmaSerializer(read_only=True)
     tagset = TagSetSerializer(read_only=True)
+    
     class Meta:
         model = Word
-        fields = '__all__'
-
-
-
-class GenusSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Genus
         fields = '__all__'
 
 

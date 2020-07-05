@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend
+    image: thehubaubg/unimorph-backend:latest
+    environment:
+    - DB_USER=${DB_USER}
+    - DB_PASSWORD=${DB_PASSWORD}
+    - DB_NAME=${DB_NAME}
+    - DB_HOST=${DB_HOST}
+    - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
+    - SECRET_KEY=${SECRET_KEY}
+    depends_on:
+    - database
+    command: ["./wait-for-it.sh", "database:5432", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+    expose:
+    - 8000
+      
+  nginx:
+    container_name: nginx
+    image: thehubaubg/unimorph-frontend:latest
+    ports:
+    - 80:80
+    volumes:
+    - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+    - database
+    - backend
+
+  database:
+    container_name: database
+    image: thehubaubg/unimorph-testdb:latest
+    expose:
+    - 5432

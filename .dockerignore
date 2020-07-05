@@ -9,4 +9,3 @@ venv
 Dockerfile
 LICENSE
 README.md
-.travis.yml

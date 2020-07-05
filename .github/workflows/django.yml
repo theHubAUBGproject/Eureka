@@ -1,19 +1,18 @@
-name: Django CI
+name: Django CI Pipeline
 
 on:
   push:
-    branches: [ develop, master ]
-  pull_request:
     branches: [ develop ]
+  pull_request:
+    branches: [ master, develop ]
 
 jobs:
-  build:
-
+   Tests:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.7]
 
     steps:
     - uses: actions/checkout@v2
@@ -28,4 +27,3 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
-
