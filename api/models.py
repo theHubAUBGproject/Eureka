@@ -73,7 +73,7 @@ class Feature(models.Model):
         on_delete=models.PROTECT,
         null=True
     )
-
+    label = models.CharField(max_length=15, null=True)
     def __str__(self):
         return self.name
 
@@ -98,7 +98,7 @@ class POSForm(forms.ModelForm):
 
 
 class Lemma(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=70)
     language = models.ForeignKey(
         'Language',
         on_delete=models.PROTECT,
@@ -135,7 +135,7 @@ class TagSetForm(forms.ModelForm):
 
 
 class Word(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=110)
     date_updated = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
     lemma = models.ForeignKey('Lemma', on_delete=models.PROTECT, null=True)

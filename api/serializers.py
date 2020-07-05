@@ -22,7 +22,6 @@ class PosSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class DimensionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dimension
