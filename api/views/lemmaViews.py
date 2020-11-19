@@ -1,18 +1,22 @@
 from django.core.exceptions import MultipleObjectsReturned
-from django.http import Http404
 from django.db.models import Prefetch
+from django.http import Http404
 from django.shortcuts import get_list_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics, status
-from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 
-from ..models import Lemma, Word, Language
-from ..serializers import LemmaSerializer, RelatedWordSerializer, LanguageSerializer, LangLemmaSerializer
+from ..models import Language, Lemma, Word
+from ..serializers import (LangLemmaSerializer, LanguageSerializer,
+                           LemmaSerializer, RelatedWordSerializer)
 from ..utils import getDimOptions, getFeatures
 
 paginator = PageNumberPagination()
 
+'''
+Endpoint for lemmas in particular language
+'''
 class LemmaList(generics.ListCreateAPIView):
     queryset = Lemma.objects.all()
     serializer_class = LangLemmaSerializer
@@ -35,6 +39,25 @@ class LemmaList(generics.ListCreateAPIView):
                                  "Access-Control-Allow-Headers":
                                  "access-control-allow-origin"})
 
+'''
+Endpoint for all lemmas regardless of language
+'''
+class AllLemmasList(generics.ListAPIView):
+    queryset = Lemma.objects.all()
+    serializer_class = LangLemmaSerializer
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    search_fields = ['^name']
+
+    def options(self, request):
+        return Response(status=status.HTTP_200_OK,
+                        headers={"Access-Control-Allow-Origin": "*",
+                                 "Access-Control-Allow-Headers":
+                                 "access-control-allow-origin"})
+
+
+'''
+Endpoint for a single lemma
+'''
 class LemmaDetail(generics.RetrieveUpdateAPIView):
     queryset = Lemma.objects.all()
     serializer_class = LemmaSerializer

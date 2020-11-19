@@ -1,12 +1,15 @@
-from django.urls import path
-# flake8: noqa
-import api.views as views
 from urllib import parse
 
+from django.urls import path
+
+# flake8: noqa
+import api.views as views
+
 urlpatterns = [
-    path('<str:lang>/', views.APIRootList.as_view(), name='root'),
+    path('<slug:lang>/', views.APIRootList.as_view(), name='root'),
     # All-models views
     # path('users/', views.UserList.as_view(), name='users'),
+    path('all/lemmas/', views.AllLemmasList.as_view(), name='all_lemmas'),
     path('<slug:lang>/families/', views.FamilyList.as_view(), name='families'),
     path('<slug:lang>/languages/', views.LanguageList.as_view(), name='languages'),
     path('<slug:lang>/dimensions/', views.DimensionList.as_view(),name='dimensions'),
