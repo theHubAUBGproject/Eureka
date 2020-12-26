@@ -1,5 +1,3 @@
-
-
 from django.core.exceptions import MultipleObjectsReturned
 from django.http import Http404
 from django.shortcuts import get_list_or_404
@@ -11,11 +9,14 @@ from ..models import Word
 from ..serializers import WordSerializer
 from ..utils import getDimOptions
 
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from ..customPermissions import LinguistPermission, ReadOnly
 
 class WordList(generics.ListCreateAPIView):
     queryset = Word.objects.all()
     serializer_class = WordSerializer
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    permission_classes = [ IsAdminUser|LinguistPermission|ReadOnly ]
     search_fields = ['^name']
 
     def options(self, request, lang):
@@ -24,10 +25,11 @@ class WordList(generics.ListCreateAPIView):
                                  "Access-Control-Allow-Headers":
                                  "access-control-allow-origin"})
 
-
+ 
 class WordDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Word.objects.all()
     serializer_class = WordSerializer
+    permission_classes = [ IsAdminUser|LinguistPermission|ReadOnly ]
     lookup_field = 'name'
 
     def get_object(self):
@@ -46,7 +48,7 @@ class WordDetail(generics.RetrieveUpdateDestroyAPIView):
                         headers={"Access-Control-Allow-Origin": "*"})
         
     def update(self, request, name):
-        word = self.get_object();
+        word = self.get_object()
         serializer = self.get_serializer(word, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)

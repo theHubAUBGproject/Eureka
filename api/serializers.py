@@ -1,8 +1,8 @@
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import Group
 from rest_framework import serializers
 
-from .models import (POS, Dimension, Family, Feature, Genus, Language, Lemma,
-                     TagSet, Word)
+from .models import (POS, Dimension,User, Family, Feature, Genus, Language, Lemma,
+                     TagSet, Word, Proposal, Notification)
 
 
 class FeatureSerializer(serializers.ModelSerializer):
@@ -15,7 +15,6 @@ class PosSerializer(serializers.ModelSerializer):
     class Meta:
         model = POS
         fields = '__all__'
-
 
 
 class DimensionSerializer(serializers.ModelSerializer):
@@ -82,7 +81,6 @@ class FamilySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class WordSerializer(serializers.ModelSerializer):
     lemma = LemmaSerializer(read_only=True)
     tagset = TagSetSerializer(read_only=True)
@@ -96,7 +94,7 @@ class RelatedWordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Word
-        fields = ['id', 'name', 'tagset']
+        fields = ['id', 'name', 'tagset', 'approved']
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -107,8 +105,27 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    groups = GroupSerializer(many=True, read_only=True)
-
+    # groups = GroupSerializer(many=True, read_only=True)
     class Meta:
         model = User
-        fields = ['username', 'password', 'email', 'first_name', 'last_name', 'groups']
+        fields = '__all__'
+        depth = 2 
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields='__all__'
+
+
+class ProposalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Proposal
+        fields='__all__'
+        depth = 2
+
+
+class SingleProposalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Proposal
+        fields = '__all__'

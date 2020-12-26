@@ -9,6 +9,10 @@ from ..models import Language, Lemma, Word
 from ..serializers import (LangLemmaSerializer, LemmaSerializer,
                            RelatedWordSerializer)
 
+from rest_framework.permissions import IsAdminUser
+
+from ..customPermissions import LinguistPermission, ReadOnly
+
 paginator = PageNumberPagination()
 
 '''
@@ -19,6 +23,9 @@ class LemmaList(generics.ListCreateAPIView):
     serializer_class = LangLemmaSerializer
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     filterset_fields = ['language', 'animacy', 'transivity', 'author', 'pos', 'date_updated']
+    
+    permission_classes = [ IsAdminUser|LinguistPermission|ReadOnly ]
+
     search_fields = ['^name']
     paginator.page_size = 72
 

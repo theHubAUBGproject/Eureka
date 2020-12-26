@@ -4,7 +4,7 @@ from django.contrib.auth.models import Permission
 from django.utils.translation import gettext as _
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import (POS, Dimension, Family, Feature, Genus, Language, Lemma,
-                     TagSet, Word, User)
+                     TagSet, Word, User, Proposal, Notification)
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
@@ -20,6 +20,8 @@ class UserAdmin(BaseUserAdmin):
                     'is_active',
                     'is_staff',
                     'is_superuser',
+                    'is_linguist'
+                  
                 )
             }
         ),
@@ -45,3 +47,5 @@ admin.site.register(TagSet)
 admin.site.register(POS)
 admin.site.register(Genus)
 admin.site.register(User, UserAdmin)
+admin.site.register(Proposal)
+admin.site.register(Notification)
