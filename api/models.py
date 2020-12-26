@@ -18,6 +18,14 @@ class UserManager(BaseUserManager):
 
         return user
 
+    def create_linguist(self, email, password=None, **extra_fields):
+        """ Creates and saves a new linguist """
+        user = self.create_user(email, password)
+        user.is_linguist = True
+        user.save(using=self._db)
+
+        return user
+
     def create_superuser(self, email, password=None, **extra_fields):
         """ Creates and saves a new superuser"""
         user = self.create_user(email, password)
@@ -34,7 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-
+    is_linguist = models.BooleanField(default=False)
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
@@ -174,6 +182,35 @@ class Word(models.Model):
         null=True
     )
     tagset = models.ForeignKey('TagSet', on_delete=models.PROTECT, null=True)
-
+    approved = models.BooleanField(default=True)
     def __str__(self):
         return self.name
+
+
+class Proposal(models.Model):
+    author = models.ForeignKey(User, on_delete=models.PROTECT, null=True,related_name='author')
+    date = models.DateTimeField(default=timezone.now)
+    word = models.ForeignKey('Word', on_delete=models.PROTECT)
+    proposedWord = models.CharField(max_length=255, default='')
+    note = models.TextField()
+    status = models.CharField(default='Pending', max_length=30)
+
+    
+class ProposalForm(forms.ModelForm):
+    class Meta:
+        model = Proposal
+        fields = ['status', 'word']
+
+
+class Notification(models.Model):
+    proposal = models.ForeignKey(Proposal, null=True, on_delete=models.PROTECT)
+    seen = models.BooleanField(default=False)
+    toUser = models.ManyToManyField(User, related_name='toUser')
+    fromUser = models.ForeignKey(User, null=False, on_delete=models.PROTECT, related_name='fromUser')
+    date = models.DateTimeField(default=timezone.now)
+
+
+class NotificationForm(forms.ModelForm):
+    class Meta:
+        model = Notification
+        fields = ['toUser','date']
