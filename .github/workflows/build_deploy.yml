@@ -5,7 +5,7 @@ on:
     types: [ published, created ]
   push:
     tags:
-     - v*.*
+     - v*
 
 jobs:
   deploy:

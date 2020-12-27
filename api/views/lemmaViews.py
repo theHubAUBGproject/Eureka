@@ -1,5 +1,3 @@
-from django.core.exceptions import MultipleObjectsReturned
-from django.db.models import Prefetch
 from django.http import Http404
 from django.shortcuts import get_list_or_404
 from django_filters.rest_framework import DjangoFilterBackend
@@ -8,9 +6,8 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 from ..models import Language, Lemma, Word
-from ..serializers import (LangLemmaSerializer, LanguageSerializer,
-                           LemmaSerializer, RelatedWordSerializer)
-from ..utils import getDimOptions, getFeatures
+from ..serializers import (LangLemmaSerializer, LemmaSerializer,
+                           RelatedWordSerializer)
 
 from rest_framework.permissions import IsAdminUser
 
