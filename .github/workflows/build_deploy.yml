@@ -2,7 +2,7 @@ name: Deploy Pipeline
 
 on:
   release:
-    types: [ published, created ]
+    types: [ published, created, edited, released ]
   # push:
   #   tags:
   #    - v*
