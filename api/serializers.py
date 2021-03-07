@@ -122,7 +122,7 @@ class ProposalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proposal
         fields='__all__'
-        depth = 2
+        # depth = 2
 
 
 class SingleProposalSerializer(serializers.ModelSerializer):

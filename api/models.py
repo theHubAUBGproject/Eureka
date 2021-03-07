@@ -206,7 +206,6 @@ class Notification(models.Model):
     proposal = models.ForeignKey(Proposal, null=True, on_delete=models.PROTECT)
     seen = models.BooleanField(default=False)
     toUser = models.ManyToManyField(User, related_name='toUser')
-    fromUser = models.ForeignKey(User, null=False, on_delete=models.PROTECT, related_name='fromUser')
     date = models.DateTimeField(default=timezone.now)
 
 
