@@ -13,6 +13,10 @@ from rest_framework.permissions import IsAdminUser
 
 from ..customPermissions import LinguistPermission, ReadOnly
 
+from rest_framework.permissions import IsAdminUser
+
+from ..customPermissions import LinguistPermission, ReadOnly
+
 paginator = PageNumberPagination()
 
 '''

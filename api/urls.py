@@ -5,6 +5,7 @@ from django.urls import path
 # flake8: noqa
 import api.views as views
 
+
 urlpatterns = [
     path('<slug:lang>/', views.APIRootList.as_view(), name='root'),
     # All-models views
@@ -15,10 +16,11 @@ urlpatterns = [
     path('<slug:lang>/dimensions/', views.DimensionList.as_view(),name='dimensions'),
     path('<slug:lang>/features/', views.FeatureList.as_view(), name='features'),
     path('<slug:lang>/genera/', views.GenusList.as_view(), name='genera'),
+
+    # Notifications
     path('<slug:lang>/notifications/', views.NotificationList.as_view(), name='notifications'),
     path('<slug:lang>/notifications/<str:id>', views.NotificationDetail.as_view(), name='notificationsDetail'),
-    path('<slug:lang>/proposals/', views.ProposalList.as_view(), name='proposals'),
-    path('<slug:lang>/proposals/<str:id>', views.ProposalDetail.as_view(), name='proposalDetail'),
+
     path('<slug:lang>/tagsets/', views.TagSetList.as_view(), name='tagsets'),
     path('<slug:lang>/lemmas/', views.LemmaList.as_view(), name='lemmas'),
     path('<slug:lang>/words/', views.WordList.as_view(), name='words'),
@@ -38,4 +40,7 @@ urlpatterns = [
     path('data/download/families/<str:familyName>/', views.FamilyQueryDownload.as_view()),
     path('data/download/genera/<str:genusName>/', views.GenusQueryDownload.as_view()),
     path('data/download/all/', views.AllLanguagesDownload.as_view()),
+    # Proposals
+    path('<slug:lang>/proposals/', views.ProposalList.as_view(), name='proposals'),
+    path('<slug:lang>/proposals/<str:id>', views.ProposalDetail.as_view(), name='proposalDetail'),
 ]

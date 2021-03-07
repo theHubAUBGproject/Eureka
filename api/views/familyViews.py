@@ -10,7 +10,7 @@ from ..models import Family
 from ..serializers import FamilySerializer
 
 class FamilyList(generics.ListCreateAPIView):
-    queryset = Family.objects.all()
+    queryset = Family.objects.all().order_by('-id')
     serializer_class = FamilySerializer
     permission_classes = [ IsAdminUser|LinguistPermission|ReadOnly ]
     filter_backends = [DjangoFilterBackend]
