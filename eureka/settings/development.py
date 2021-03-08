@@ -23,7 +23,7 @@ SECRET_KEY = 'tjwhs8#(v511t9(-%ojwl6=c_iir+)f5rlc$!gah)w-^shditr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "*"]
+ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0"]
 
 
 # Application definition
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'accounts',
     'api',
     'rest_framework.authtoken',
-    'django_extensions',
 
 ]
 
