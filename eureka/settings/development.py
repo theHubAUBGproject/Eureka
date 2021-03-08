@@ -155,9 +155,3 @@ STATIC_ROOT ='./static'
 AUTH_USER_MODEL = 'api.User'
 
 
-
-GRAPH_MODELS = {
-#   'all_applications': True,
-#   'group_models': True,
-  'app_labels': ["api"],
-}
