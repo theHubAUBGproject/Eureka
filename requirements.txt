@@ -3,3 +3,4 @@ django_filter==2.3.0
 djangorestframework==3.11.1
 psycopg2==2.8.5
 autopep8==1.5.4
+django-cors-headers==3.7.0
