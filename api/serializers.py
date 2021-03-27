@@ -1,8 +1,8 @@
 from django.contrib.auth.models import Group
 from rest_framework import serializers
 
-from .models import (POS, Dimension,User, Family, Feature, Genus, Language, Lemma,
-                     TagSet, Word, Proposal, Notification)
+from .models import (POS, Dimension, Family, Feature, Genus, Language, Lemma,
+                     Notification, Proposal, TagSet, User, Word)
 
 
 class FeatureSerializer(serializers.ModelSerializer):
@@ -43,7 +43,6 @@ class FamilySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class LangLemmaSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Lemma
         fields = ["name"]
@@ -96,6 +95,12 @@ class RelatedWordSerializer(serializers.ModelSerializer):
         model = Word
         fields = ['id', 'name', 'tagset', 'approved']
 
+class ProposalWordSerializer(serializers.ModelSerializer):
+    lemma = LangLemmaSerializer(read_only=True)
+    language = LanguageSerializer(read_only=True)
+    class Meta:
+        model = Word
+        fields = ['id', 'name', 'lemma', 'language']
 
 class GroupSerializer(serializers.ModelSerializer):
 
@@ -119,10 +124,10 @@ class NotificationSerializer(serializers.ModelSerializer):
 
 
 class ProposalSerializer(serializers.ModelSerializer):
+    word = ProposalWordSerializer(read_only=True)
     class Meta:
         model = Proposal
         fields='__all__'
-        # depth = 2
 
 
 class SingleProposalSerializer(serializers.ModelSerializer):

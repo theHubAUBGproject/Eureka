@@ -12,20 +12,7 @@ class TagSetList(generics.ListCreateAPIView):
     filterset_backends = [DjangoFilterBackend]
     filterset_fields = ['name', 'features']
 
-    def options(self, request, lang):
-        return Response(status=status.HTTP_200_OK,
-                        headers={"Access-Control-Allow-Origin": "*",
-                                 "Access-Control-Allow-Headers":
-                                 "access-control-allow-origin"})
-
-
 class TagSetDetail(generics.RetrieveUpdateAPIView):
     queryset = TagSet.objects.all()
     serializer_class = TagSetSerializer
     lookup_field = 'name'
-
-    def options(self, request, name):
-        return Response(status=status.HTTP_200_OK,
-                        headers={"Access-Control-Allow-Origin": "*",
-                                 "Access-Control-Allow-Headers":
-                                 "access-control-allow-origin"})

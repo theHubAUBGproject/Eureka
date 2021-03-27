@@ -1,8 +1,9 @@
 from django import forms
+from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
+                                        PermissionsMixin)
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
-                                        PermissionsMixin
+
 # Create your models here.
 
 
@@ -46,8 +47,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-
-
 
 class Genus(models.Model):
     name = models.CharField(max_length=30)

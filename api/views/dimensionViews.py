@@ -13,13 +13,6 @@ class DimensionList(generics.ListCreateAPIView):
     filter_backends = [DjangoFilterBackend]
     search_fields = ['name']
 
-    def options(self, request, lang):
-        return Response(status=status.HTTP_200_OK,
-                        headers={"Access-Control-Allow-Origin": "*",
-                                 "Access-Control-Allow-Headers":
-                                 "access-control-allow-origin"})
-
-
 class DimensionDetail(generics.RetrieveUpdateAPIView):
     queryset = Dimension.objects.all()
     serializer_class = DimensionSerializer
@@ -32,9 +25,3 @@ class DimensionDetail(generics.RetrieveUpdateAPIView):
         dims = getAllFeatures(dimension=dimension)
         dim_data['options'] = dims
         return Response(dim_data, status=status.HTTP_200_OK)
-
-    def options(self, request, name):
-        return Response(status=status.HTTP_200_OK,
-                        headers={"Access-Control-Allow-Origin": "*",
-                                 "Access-Control-Allow-Headers":
-                                 "access-control-allow-origin"})

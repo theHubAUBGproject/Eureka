@@ -3,19 +3,13 @@ from django.shortcuts import get_list_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics, status
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 
+from ..customPermissions import LinguistPermission, ReadOnly
 from ..models import Language, Lemma, Word
 from ..serializers import (LangLemmaSerializer, LemmaSerializer,
                            RelatedWordSerializer)
-
-from rest_framework.permissions import IsAdminUser
-
-from ..customPermissions import LinguistPermission, ReadOnly
-
-from rest_framework.permissions import IsAdminUser
-
-from ..customPermissions import LinguistPermission, ReadOnly
 
 paginator = PageNumberPagination()
 
@@ -41,12 +35,6 @@ class LemmaList(generics.ListCreateAPIView):
         serializer = serializer_class(page, many=True)
         return paginator.get_paginated_response(serializer.data)
         
-    def options(self, request, lang):
-        return Response(status=status.HTTP_200_OK,
-                        headers={"Access-Control-Allow-Origin": "*",
-                                 "Access-Control-Allow-Headers":
-                                 "access-control-allow-origin"})
-
 '''
 Endpoint for all lemmas regardless of language
 '''
@@ -55,13 +43,6 @@ class AllLemmasList(generics.ListAPIView):
     serializer_class = LangLemmaSerializer
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['^name']
-
-    def options(self, request):
-        return Response(status=status.HTTP_200_OK,
-                        headers={"Access-Control-Allow-Origin": "*",
-                                 "Access-Control-Allow-Headers":
-                                 "access-control-allow-origin"})
-
 
 '''
 Endpoint for a single lemma
@@ -95,9 +76,3 @@ class LemmaDetail(generics.RetrieveUpdateAPIView):
         return Response(lemma_data,
                         headers={"Access-Control-Allow-Origin": "*"},
                         status=status.HTTP_200_OK)
-
-    def options(self, request, lang, name):
-        return Response(status=status.HTTP_200_OK,
-                        headers={"Access-Control-Allow-Origin": "*",
-                                 "Access-Control-Allow-Headers":
-                                 "access-control-allow-origin"})

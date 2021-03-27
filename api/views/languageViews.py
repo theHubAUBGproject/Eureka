@@ -21,9 +21,3 @@ class LanguageList(generics.ListCreateAPIView):
         return Response(serialized.data,
                         headers={"Access-Control-Allow-Origin": "*"},
                         status=status.HTTP_200_OK)
-
-    def options(self, request, lang):
-        return Response(status=status.HTTP_200_OK,
-                        headers={"Access-Control-Allow-Origin": "*",
-                                 "Access-Control-Allow-Headers":
-                                 "access-control-allow-origin"})

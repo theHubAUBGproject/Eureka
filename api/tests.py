@@ -152,7 +152,7 @@ class PermissionTests(TestCase):
         wordObject = Word.objects.get(name=wordPayload['name'])
 
         proposal1_payload = {
-            'word':wordObject.pk,
+            'word': wordObject.pk,
             'proposedWord': 'word2',
             'note': 'This is the first proposal!'
         }

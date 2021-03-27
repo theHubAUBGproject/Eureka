@@ -3,14 +3,14 @@ from django.http import Http404
 from django.shortcuts import get_list_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics, status
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 
+from ..customPermissions import LinguistPermission, ReadOnly
 from ..models import Word
 from ..serializers import WordSerializer
 from ..utils import getDimOptions
 
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from ..customPermissions import LinguistPermission, ReadOnly
 
 class WordList(generics.ListCreateAPIView):
     queryset = Word.objects.all()
@@ -19,13 +19,6 @@ class WordList(generics.ListCreateAPIView):
     permission_classes = [ IsAdminUser|LinguistPermission|ReadOnly ]
     search_fields = ['^name']
 
-    def options(self, request, lang):
-        return Response(status=status.HTTP_200_OK,
-                        headers={"Access-Control-Allow-Origin": "*",
-                                 "Access-Control-Allow-Headers":
-                                 "access-control-allow-origin"})
-
- 
 class WordDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Word.objects.all()
     serializer_class = WordSerializer
@@ -54,9 +47,3 @@ class WordDetail(generics.RetrieveUpdateDestroyAPIView):
         self.perform_update(serializer)
         return Response(serializer.data, 
                         headers={"Access-Control-Allow-Origin": "*"})
-
-    def options(self, request, name):
-        return Response(status=status.HTTP_200_OK,
-                        headers={"Access-Control-Allow-Origin": "*",
-                                 "Access-Control-Allow-Headers":
-                                     "access-control-allow-origin"})
