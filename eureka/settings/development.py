@@ -100,8 +100,8 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': os.environ.get('DB_BACKEND', 'django.db.backends.postgresql_psycopg2'),
-            'NAME': 'testdb',
-            'USER': 'dastansamat',
+            'NAME': 'prod',
+            'USER': 'prod',
             'PASSWORD': 'DastanLazaron',
             'HOST': os.environ.get('DB_HOST', 'localhost'),
             'PORT': '5432',
