@@ -98,9 +98,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': os.environ.get('DB_BACKEND', 'django.db.backends.postgresql_psycopg2'),
-            'NAME': 'test',
-            'USER': 'admin',
-            'PASSWORD': 'DastanLazaron',
+            'NAME': os.environ['DB_NAME'],
+            'USER': os.environ['DB_USER'],
+            'PASSWORD': os.environ['DB_PASSWORD'],
             'HOST': os.environ.get('DB_HOST', 'localhost'),
             'PORT': '5432',
         }
@@ -160,7 +160,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT ='./static'
 
 AUTH_USER_MODEL = 'api.User'
-
 
 EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
