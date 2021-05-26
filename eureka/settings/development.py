@@ -7,9 +7,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-import os
-import sys
-
+import os, sys
 from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -25,7 +23,7 @@ SECRET_KEY = 'tjwhs8#(v511t9(-%ojwl6=c_iir+)f5rlc$!gah)w-^shditr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0"]
+ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "localhost"]
 
 # Application definition
 
@@ -100,8 +98,8 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': os.environ.get('DB_BACKEND', 'django.db.backends.postgresql_psycopg2'),
-            'NAME': 'prod',
-            'USER': 'prod',
+            'NAME': 'test',
+            'USER': 'admin',
             'PASSWORD': 'DastanLazaron',
             'HOST': os.environ.get('DB_HOST', 'localhost'),
             'PORT': '5432',
@@ -162,3 +160,13 @@ STATIC_URL = '/static/'
 STATIC_ROOT ='./static'
 
 AUTH_USER_MODEL = 'api.User'
+
+
+EMAIL_HOST = os.environ['EMAIL_HOST']
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = os.environ['EMAIL_HOST_USER']
+EMAIL_PORT = os.environ['EMAIL_PORT']
+EMAIL_USE_SSL = False
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']

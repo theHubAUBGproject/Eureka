@@ -52,3 +52,23 @@ class AuthTokenSerializer(serializers.Serializer):
 
         attrs['user'] = user
         return attrs
+
+
+class ForgotPasswordSerializer(serializers.Serializer):
+    model = get_user_model()
+
+    """
+    Serializer for password change endpoint.
+    """
+    email = serializers.EmailField(required=True)
+    # new_password = serializers.CharField(required=True)
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    model = get_user_model()
+
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)

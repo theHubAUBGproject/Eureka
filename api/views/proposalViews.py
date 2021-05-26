@@ -1,6 +1,6 @@
 from api.models import Notification, Proposal, User, Word
 from django.shortcuts import get_object_or_404
-from rest_framework import generics, status
+from rest_framework import generics, status, authentication
 from rest_framework.permissions import (SAFE_METHODS, BasePermission,
                                         IsAdminUser, IsAuthenticated)
 from rest_framework.response import Response
@@ -48,16 +48,82 @@ class ProposalList(generics.ListCreateAPIView):
                          status=status.HTTP_403_FORBIDDEN)
 
     def list(self, request, lang, **kwargs):
-        user = self.request.user
-        user = get_object_or_404(User, email=user.email)
-        queryset = Proposal.objects.filter(author=user.id)
-        serialized = ProposalSerializer(queryset, many=True)
+        all = self.get_queryset()
+        serialized = ProposalSerializer(all, many=True)
         return Response(serialized.data,
                 headers={"Access-Control-Allow-Origin": "*"},
                 status=status.HTTP_200_OK)
 
-class ProposalDetail(generics.RetrieveUpdateDestroyAPIView):
+
+class ProposalsForApproval(generics.ListAPIView):
+    serializer_class = ProposalSerializer
+    permission_classes = [IsAdminUser|LinguistPermission]
+
+    def get_queryset(self):
+        return Proposal.objects.filter().order_by('-id')
+
+    def list(self, request, lang, **kwargs):
+
+        serialized = ProposalSerializer(self.get_queryset(), many=True)
+
+        return Response(serialized.data,
+                headers={"Access-Control-Allow-Origin": "*"},
+                status=status.HTTP_200_OK)
+
+
+class ApproveProposal(generics.RetrieveUpdateAPIView):
+    """ Approve a proposal  """
     queryset = Proposal.objects.all()
     serializer_class = SingleProposalSerializer
     permission_classes = [IsAdminUser|LinguistPermission]
-    lookup_field = 'id'
+    authentication_classes = (authentication.TokenAuthentication,)
+
+    def get_object(self):
+        id = self.kwargs['id']
+        proposal = get_object_or_404(Proposal, id=id)
+        return proposal
+    
+    def partial_update(self, request, *args, **kwargs):
+        curr_proposal = self.get_object()
+
+        kwargs['partial'] = True
+        
+
+        # Update the word form
+        word_object = get_object_or_404(Word, id = curr_proposal.word.id )  
+        word_object.name = curr_proposal.proposedWord
+        word_object.save()
+
+        request.data['status'] = "Approved"
+
+        # Notify the user here
+        # ......
+
+        return self.update(request, *args, **kwargs)
+
+
+class DeclineProposal(generics.RetrieveUpdateAPIView):
+    """ Decline a proposal  """
+    queryset = Proposal.objects.all()
+    serializer_class = SingleProposalSerializer
+    permission_classes = [IsAdminUser|LinguistPermission]
+    authentication_classes = (authentication.TokenAuthentication,)
+
+    def get_object(self):
+        id = self.kwargs['id']
+        proposal = get_object_or_404(Proposal, id=id)
+        return proposal
+    
+    def partial_update(self, request, *args, **kwargs):
+        import json
+        curr_proposal = self.get_object()
+        
+        kwargs['partial'] = True
+        request.data['status'] = "Declined"
+        # Notify the user here
+        # ......
+
+        return self.update(request, *args, **kwargs)
+
+
+

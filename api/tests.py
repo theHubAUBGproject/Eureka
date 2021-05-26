@@ -17,8 +17,10 @@ FAMILY_URL = reverse('families', kwargs={"lang": "d"})
 PROPOSAL_URL = reverse('proposals', kwargs={"lang":"d"})
 NOTIFICATION_URL = reverse('notifications', kwargs={"lang":"d"})
 
-WORD_URL = reverse('words', kwargs={"lang":"d"})
 
+
+WORD_URL = reverse('words', kwargs={"lang":"d"})
+import json
 
 def create_user(**param):
     return get_user_model().objects.create_user(**param)
@@ -151,26 +153,79 @@ class PermissionTests(TestCase):
 
         wordObject = Word.objects.get(name=wordPayload['name'])
 
-        proposal1_payload = {
+        proposal1_payload = [{
             'word': wordObject.pk,
             'proposedWord': 'word2',
             'note': 'This is the first proposal!'
-        }
+        }]
 
-        proposal2_payload = {
+        proposal2_payload = [{
             'word':wordObject.pk,
             'proposedWord': 'word3',
             'note': 'This is the second proposal!'
-        }
+        }]
 
         # Create the proposals
-        self.LINGUIST.post(PROPOSAL_URL, proposal1_payload)
-        self.NORMALUSER.post(PROPOSAL_URL, proposal2_payload)
+        res2 = self.LINGUIST.post(PROPOSAL_URL, json.dumps(proposal1_payload),content_type="application/json")
+        res3 = self.NORMALUSER.post(PROPOSAL_URL, json.dumps(proposal2_payload),content_type="application/json")
+        
         # List the proposals
         res1 = self.LINGUIST.get(PROPOSAL_URL)
         res2 = self.NORMALUSER.get(PROPOSAL_URL)
+        
 
         self.assertEqual(res1.status_code, status.HTTP_200_OK)
         self.assertEqual(res2.status_code, status.HTTP_200_OK)
         # Here see that different useres have different results
         self.assertNotEqual(res1.data, res2.data)
+
+    def test_user_linguist_can_approve_or_decline_proposal(self):
+        """ Test that linguists can approve or decline proposals """
+
+        LIST_PROPOSALS_FOR_APPROVAL_URL = reverse('proposals_for_approval', kwargs={"lang":"d"})
+        wordPayload = {'name':'word1'}
+        res1 = self.LINGUIST.post(WORD_URL, wordPayload)
+
+        wordObject = Word.objects.get(name=wordPayload['name'])
+
+        proposal1_payload = [{
+            'word': wordObject.pk,
+            'proposedWord': 'word2',
+            'note': 'This is the first proposal!'
+        }]
+
+        proposal2_payload = [{
+            'word':wordObject.pk,
+            'proposedWord': 'word3',
+            'note': 'This is the second proposal!'
+        }]
+
+        # Create the proposals
+        res2 = self.LINGUIST.post(PROPOSAL_URL, json.dumps(proposal1_payload),content_type="application/json")
+        res3 = self.NORMALUSER.post(PROPOSAL_URL, json.dumps(proposal2_payload),content_type="application/json")       
+
+        res = self.LINGUIST.get(LIST_PROPOSALS_FOR_APPROVAL_URL)
+        first_proposal = res.data[0]
+        second_proposal = res.data[1]
+        
+        DECLINE_PROPOSAL_URL = reverse('decline_proposal', kwargs={"lang":"d","id":first_proposal['id']})
+        APPROVE_PROPOSAL_URL = reverse('approve_proposal', kwargs={"lang":"d","id":second_proposal['id']})
+
+        # decline here
+        decline_response = self.LINGUIST.patch(DECLINE_PROPOSAL_URL)
+        res = self.LINGUIST.get(LIST_PROPOSALS_FOR_APPROVAL_URL)
+        first_proposal = res.data[0]
+        self.assertEqual(first_proposal['status'], 'Declined')
+
+        # approve here and confirm it word name is successfully changed
+        decline_response = self.LINGUIST.patch(APPROVE_PROPOSAL_URL)
+        res = self.LINGUIST.get(LIST_PROPOSALS_FOR_APPROVAL_URL)
+        second_proposal = res.data[1]
+        self.assertEqual(second_proposal['status'], 'Approved')
+        self.assertEqual(second_proposal['proposedWord'], second_proposal['word']['name'] )
+
+
+
+
+
+
