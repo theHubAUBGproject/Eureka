@@ -2,12 +2,13 @@ import csv
 from io import BytesIO, StringIO
 from zipfile import ZipFile
 
-from api.serializers import DimensionSerializer, FeatureSerializer
 from django.db import connection
 from django.db.models import F
 from django.http import Http404, HttpResponse
 from django.utils import timezone
 from rest_framework.response import Response
+
+from api.serializers import DimensionSerializer, FeatureSerializer
 
 from .models import Dimension, Feature, Word
 

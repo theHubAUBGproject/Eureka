@@ -7,8 +7,10 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-import sys
 import os
+import sys
+
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0"]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,12 +41,13 @@ INSTALLED_APPS = [
     'accounts',
     'api',
     'rest_framework.authtoken',
-
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -55,7 +57,14 @@ MIDDLEWARE = [
 
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    'http://0.0.0.0:8080',
+    'http://unimorph.ethz.ch'
+]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'access-control-allow-origin'
+]
 
 ROOT_URLCONF = 'eureka.urls'
 
@@ -125,6 +134,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
        'rest_framework.authentication.SessionAuthentication',
+       'rest_framework.authentication.TokenAuthentication'
        ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 72,
@@ -152,5 +162,3 @@ STATIC_URL = '/static/'
 STATIC_ROOT ='./static'
 
 AUTH_USER_MODEL = 'api.User'
-
-

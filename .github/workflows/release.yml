@@ -11,28 +11,9 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Read CHANGELOG
-        id: release_body
-        run: |
-            echo "::set-output name=body::$(cat CHANGELOG.md)"
-            # Parse changelog
-            CHANGELOG=$(cat CHANGELOG.md)
-            CHANGELOG="${CHANGELOG//'%'/'%25'}"
-            CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
-            CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
-
-            echo "Got changelog: $CHANGELOG"
-            echo "::set-output name=body::$CHANGELOG"
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@master
+      - uses: actions/checkout@v2
+      - uses: softprops/action-gh-release@v1
+        with:
+          body_path: "CHANGELOG.md"
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: ${{ steps.release_body.outputs.body }}
-          draft: false
-          prerelease: false
