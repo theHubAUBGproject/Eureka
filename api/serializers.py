@@ -113,8 +113,8 @@ class UserSerializer(serializers.ModelSerializer):
     # groups = GroupSerializer(many=True, read_only=True)
     class Meta:
         model = User
-        fields = '__all__'
-        depth = 2 
+        fields = ['id', 'email', 'name', 'is_staff', 'is_linguist']
+        depth = 1
 
 
 class NotificationSerializer(serializers.ModelSerializer):
@@ -130,7 +130,16 @@ class ProposalSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 
+class WordForProposalSerializer(serializers.ModelSerializer):
+    lemma = LemmaSerializer()
+    class Meta:
+        model = Word
+        fields = ['name', 'lemma']
+
+
 class SingleProposalSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
+    word = WordForProposalSerializer()
     class Meta:
         model = Proposal
         fields = '__all__'

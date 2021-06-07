@@ -29,6 +29,7 @@ class ManageUserView(generics.RetrieveUpdateAPIView):
 
     def retrieve(self, request, **kwargs):
         user = self.get_object()
+        # print(request)
         user = get_object_or_404(User, email=user.email)
         serialized = UserSerializer(user)
         return Response(serialized.data,

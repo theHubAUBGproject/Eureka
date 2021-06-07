@@ -32,6 +32,8 @@ class ProposalList(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
+        if user.is_linguist:
+            return Proposal.objects.filter().order_by('-id')
         return Proposal.objects.filter(author=user).order_by('-id')
 
     def create(self, request, lang, **kwargs):
@@ -112,18 +114,30 @@ class DeclineProposal(generics.RetrieveUpdateAPIView):
     def get_object(self):
         id = self.kwargs['id']
         proposal = get_object_or_404(Proposal, id=id)
+
         return proposal
     
     def partial_update(self, request, *args, **kwargs):
         import json
         curr_proposal = self.get_object()
-        
         kwargs['partial'] = True
-        request.data['status'] = "Declined"
+        request.data['status'] = "Decline"
         # Notify the user here
         # ......
 
         return self.update(request, *args, **kwargs)
 
+
+class ProposalDetail(generics.RetrieveAPIView):
+    queryset = Proposal.objects.all()
+    serializer_class = SingleProposalSerializer
+    authentication_classes = (authentication.TokenAuthentication,)
+
+    def get_object(self):
+        id = self.kwargs['id']
+        proposal = get_object_or_404(Proposal, id=id)
+        return proposal
+    
+    
 
 
