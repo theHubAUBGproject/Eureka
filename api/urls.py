@@ -46,5 +46,9 @@ urlpatterns = [
     path('<slug:lang>/proposals/<str:id>', views.ProposalDetail.as_view(), name='proposal_detail'),
     path('<slug:lang>/proposals/approve/<str:id>', views.ApproveProposal.as_view(), name='approve_proposal'),
     path('<slug:lang>/proposals/decline/<str:id>', views.DeclineProposal.as_view(), name='decline_proposal'),
+
+    # Comments
+    path('<slug:lang>/comments/<str:id>', views.CommentList.as_view(), name='comments'),
+
     
 ]

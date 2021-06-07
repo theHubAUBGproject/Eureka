@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 
 from django.urls import reverse
-
 from rest_framework.test import APIClient
 from rest_framework import status
 from api.models import Word, Proposal
@@ -89,21 +88,6 @@ class PermissionTests(TestCase):
 
         resPost = self.LINGUIST.post(FAMILY_URL,payload)
         self.assertEqual(resPost.status_code, status.HTTP_201_CREATED)
-    
-    def test_proposals_have_limited_access(self):
-        """ Test that proposals have limited access to authenticated users """
-
-        resGet1 = self.LINGUIST.get(PROPOSAL_URL)
-        self.assertEqual(resGet1.status_code, status.HTTP_200_OK)
-
-        resGet2 = self.SUPERUSER.get(PROPOSAL_URL)
-        self.assertEqual(resGet2.status_code, status.HTTP_200_OK)
-
-        resGet3 = self.NORMALUSER.get(PROPOSAL_URL)
-        self.assertEqual(resGet3.status_code, status.HTTP_200_OK)
-
-        resGet4 = self.UNAUTHENTICATED.get(PROPOSAL_URL)
-        self.assertEqual(resGet4.status_code, status.HTTP_403_FORBIDDEN)
 
 
     def test_notifications_have_limited_access(self):
@@ -201,13 +185,12 @@ class PermissionTests(TestCase):
         }]
 
         # Create the proposals
-        res2 = self.LINGUIST.post(PROPOSAL_URL, json.dumps(proposal1_payload),content_type="application/json")
+        res2 = self.NORMALUSER.post(PROPOSAL_URL, json.dumps(proposal1_payload),content_type="application/json")
         res3 = self.NORMALUSER.post(PROPOSAL_URL, json.dumps(proposal2_payload),content_type="application/json")       
 
         res = self.LINGUIST.get(LIST_PROPOSALS_FOR_APPROVAL_URL)
         first_proposal = res.data[0]
         second_proposal = res.data[1]
-        
         DECLINE_PROPOSAL_URL = reverse('decline_proposal', kwargs={"lang":"d","id":first_proposal['id']})
         APPROVE_PROPOSAL_URL = reverse('approve_proposal', kwargs={"lang":"d","id":second_proposal['id']})
 

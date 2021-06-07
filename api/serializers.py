@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group
 from rest_framework import serializers
 
 from .models import (POS, Dimension, Family, Feature, Genus, Language, Lemma,
-                     Notification, Proposal, TagSet, User, Word)
+                     Notification, Proposal, TagSet, User, Word, Comment)
 
 
 class FeatureSerializer(serializers.ModelSerializer):
@@ -142,4 +142,15 @@ class SingleProposalSerializer(serializers.ModelSerializer):
     word = WordForProposalSerializer()
     class Meta:
         model = Proposal
+        fields = '__all__'
+
+class CreateProposalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Proposal
+        fields = '__all__'
+
+class CommentSerializer(serializers.ModelSerializer):
+    # author = UserSerializer()
+    class Meta:
+        model = Comment
         fields = '__all__'

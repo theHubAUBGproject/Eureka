@@ -69,7 +69,7 @@ class ForgotPasswordView(generics.UpdateAPIView):
             data = { 'site':current_site, 'email':self.object.email, 'user':self.object.name, 'password':new_password }
             Util.send_forgot_passord_email(data)
 
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_200_OK, headers={"Access-Control-Allow-Origin": "*"},)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

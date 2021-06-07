@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 from ..customPermissions import LinguistPermission, ReadOnly
 from ..serializers import (NotificationSerializer, ProposalSerializer,
-                           SingleProposalSerializer)
+                           SingleProposalSerializer, CreateProposalSerializer)
 
 
 class NotificationList(generics.ListCreateAPIView):
@@ -29,6 +29,8 @@ class ProposalList(generics.ListCreateAPIView):
     # queryset = Proposal.objects.all()
     serializer_class = ProposalSerializer
     permission_classes = [IsAuthenticated]
+    authentication_classes = (authentication.TokenAuthentication,)
+
 
     def get_queryset(self):
         user = self.request.user
@@ -37,7 +39,7 @@ class ProposalList(generics.ListCreateAPIView):
         return Proposal.objects.filter(author=user).order_by('-id')
 
     def create(self, request, lang, **kwargs):
-        serializer = SingleProposalSerializer(data=request.data, many=True)
+        serializer = CreateProposalSerializer(data=request.data, many=True)
         if serializer.is_valid():
             user = self.request.user
             user = get_object_or_404(User, email=user.email)
@@ -121,7 +123,7 @@ class DeclineProposal(generics.RetrieveUpdateAPIView):
         import json
         curr_proposal = self.get_object()
         kwargs['partial'] = True
-        request.data['status'] = "Decline"
+        request.data['status'] = "Declined"
         # Notify the user here
         # ......
 

@@ -187,7 +187,7 @@ class Word(models.Model):
 
 
 class Proposal(models.Model):
-    author = models.ForeignKey(User, on_delete=models.PROTECT, null=True,related_name='author')
+    author = models.ForeignKey(User, on_delete=models.PROTECT, null=True,related_name='proposal_author')
     date = models.DateTimeField(default=timezone.now)
     word = models.ForeignKey('Word', on_delete=models.PROTECT)
     proposedWord = models.CharField(max_length=255, default='')
@@ -199,6 +199,13 @@ class ProposalForm(forms.ModelForm):
     class Meta:
         model = Proposal
         fields = ['status', 'word']
+
+
+class Comment(models.Model):
+    author = models.ForeignKey(User, on_delete=models.PROTECT, null=True,related_name='comment_author')
+    proposal = models.ForeignKey(Proposal, on_delete=models.PROTECT, null=True,related_name='proposal')
+    content = models.TextField()
+    date = models.DateTimeField(default=timezone.now)
 
 
 class Notification(models.Model):
