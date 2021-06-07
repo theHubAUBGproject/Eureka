@@ -49,6 +49,7 @@ urlpatterns = [
 
     # Comments
     path('<slug:lang>/comments/<str:id>', views.CommentList.as_view(), name='comments'),
+    path('<slug:lang>/comments/', views.CommentCreate.as_view(), name='comments'),
 
     
 ]

@@ -149,8 +149,14 @@ class CreateProposalSerializer(serializers.ModelSerializer):
         model = Proposal
         fields = '__all__'
 
-class CommentSerializer(serializers.ModelSerializer):
-    # author = UserSerializer()
+class CommentCreateSerializer(serializers.ModelSerializer):
+    proposal_id = serializers.IntegerField(write_only=True)
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+class CommentListSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
     class Meta:
         model = Comment
         fields = '__all__'
