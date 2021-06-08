@@ -13,7 +13,7 @@ jobs:
       max-parallel: 4
       matrix:
         python-version: [3.7]
-    env: |
+    env:
         EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
         EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
         EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
