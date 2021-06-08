@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ master, develop ]
 
+env: |
+  EMAIL_HOST: ${{secrets.EMAIL_HOST}}
+  EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+  EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+
 jobs:
    Tests:
     runs-on: ubuntu-latest
