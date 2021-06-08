@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group
 from rest_framework import serializers
 
 from .models import (POS, Dimension, Family, Feature, Genus, Language, Lemma,
-                     Notification, Proposal, TagSet, User, Word)
+                     Notification, Proposal, TagSet, User, Word, Comment)
 
 
 class FeatureSerializer(serializers.ModelSerializer):
@@ -113,8 +113,8 @@ class UserSerializer(serializers.ModelSerializer):
     # groups = GroupSerializer(many=True, read_only=True)
     class Meta:
         model = User
-        fields = '__all__'
-        depth = 2 
+        fields = ['id', 'email', 'name', 'is_staff', 'is_linguist']
+        depth = 1
 
 
 class NotificationSerializer(serializers.ModelSerializer):
@@ -130,7 +130,33 @@ class ProposalSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 
+class WordForProposalSerializer(serializers.ModelSerializer):
+    lemma = LemmaSerializer()
+    class Meta:
+        model = Word
+        fields = ['name', 'lemma']
+
+
 class SingleProposalSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
+    word = WordForProposalSerializer()
     class Meta:
         model = Proposal
+        fields = '__all__'
+
+class CreateProposalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Proposal
+        fields = '__all__'
+
+class CommentCreateSerializer(serializers.ModelSerializer):
+    proposal_id = serializers.IntegerField(write_only=True)
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+class CommentListSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
+    class Meta:
+        model = Comment
         fields = '__all__'

@@ -42,5 +42,14 @@ urlpatterns = [
     path('data/download/all/', views.AllLanguagesDownload.as_view()),
     # Proposals
     path('<slug:lang>/proposals/', views.ProposalList.as_view(), name='proposals'),
-    path('<slug:lang>/proposals/<str:id>', views.ProposalDetail.as_view(), name='proposalDetail'),
+    path('<slug:lang>/proposals/all', views.ProposalsForApproval.as_view(), name='proposals_for_approval'),
+    path('<slug:lang>/proposals/<str:id>', views.ProposalDetail.as_view(), name='proposal_detail'),
+    path('<slug:lang>/proposals/approve/<str:id>', views.ApproveProposal.as_view(), name='approve_proposal'),
+    path('<slug:lang>/proposals/decline/<str:id>', views.DeclineProposal.as_view(), name='decline_proposal'),
+
+    # Comments
+    path('<slug:lang>/comments/<str:id>', views.CommentList.as_view(), name='comments'),
+    path('<slug:lang>/comments/', views.CommentCreate.as_view(), name='comments'),
+
+    
 ]
